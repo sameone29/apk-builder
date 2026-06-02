@@ -19,17 +19,16 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      - name: Install Gradle
+      - name: Install Gradle 8.2
         run: |
-          wget https://services.gradle.org/distributions/gradle-8.2-bin.zip
-          unzip gradle-8.2-bin.zip
-          export PATH=$PATH:$PWD/gradle-8.2/bin
+          wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip
+          unzip -q gradle-8.2-bin.zip -d /opt/
+          echo "/opt/gradle-8.2/bin" >> $GITHUB_PATH
 
       - name: Generate Gradle Wrapper
         run: |
-          export PATH=$PATH:$PWD/gradle-8.2/bin
           cd app
-          gradle wrapper
+          gradle wrapper --gradle-version 8.2
 
       - name: Build APK
         run: |
