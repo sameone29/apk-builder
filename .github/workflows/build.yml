@@ -26,13 +26,10 @@ jobs:
           echo "/opt/gradle-8.2/bin" >> $GITHUB_PATH
 
       - name: Generate Gradle Wrapper
-        run: |
-          cd app
-          gradle wrapper --gradle-version 8.2
+        run: gradle wrapper --gradle-version 8.2
 
       - name: Build APK
         run: |
-          cd app
           chmod +x gradlew
           ./gradlew assembleDebug
 
